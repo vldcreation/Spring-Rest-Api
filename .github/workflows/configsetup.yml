@@ -15,7 +15,7 @@ jobs:
         done
     - name: Rename files
       run: |
-        git mv src/main/resources/application.example.properties src/main/resources/application2.properties
+        git mv src/main/resources/application.example.properties src/main/resources/application.properties
     - name: Commit files
       run: |
         git config --local user.email "vldcreation21@gmail.com"
