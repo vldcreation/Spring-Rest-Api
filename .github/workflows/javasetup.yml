@@ -21,9 +21,3 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: '11'
-	 #Copying application.properties
-	 - name: copy file properties
-      uses: canastro/copy-file-action@master
-      with:
-        source: "/src/main/resources/application.example.properties"
-        target: "/src/main/resources/application.properties"
