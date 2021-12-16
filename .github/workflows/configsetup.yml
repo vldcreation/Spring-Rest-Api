@@ -1,14 +1,24 @@
 name: copy files
 on: [push]
-jobs:
 
-  build:
-    name: Build
+jobs:
+  docit:
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@master
-    - name: copy file
-      uses: canastro/copy-file-action@master
+    - name: Copy the Readmes
+      run: |
+        find src/main/resources/ -type f -name "application.example.properties" | while read fname; do
+          newname=`echo "$dirname" | sed -e "s/ /_/g"`
+          cp "src/main/resources/application.example.properties" "src/main/resources/application.properties"
+        done
+    - name: Commit files
+      run: |
+        git config --local user.email "vldcreation21@gmail.com"
+        git config --local user.name "Vicktor Desrony"
+        git commit -m "Setup properties file" -a
+    - name: Push changes
+      uses: ad-m/github-push-action@master
       with:
-        source: "src/main/resources/application.example.properties"
-        target: "src/main/resources/application.properties"
+        github_token: ${{ secrets.GITHUB_TOKEN }}
