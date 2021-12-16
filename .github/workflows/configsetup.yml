@@ -10,5 +10,5 @@ jobs:
     - name: copy file
       uses: canastro/copy-file-action@master
       with:
-        source: "/src/main/resources/application.example.properties"
-        target: "/src/main/resources/application.properties"
+        source: "src/main/resources/application.example.properties"
+        target: "src/main/resources/application.properties"
