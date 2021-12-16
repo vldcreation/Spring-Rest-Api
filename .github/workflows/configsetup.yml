@@ -15,4 +15,4 @@ jobs:
         done
     - name: Rename files
       run: |
-        git mv src/main/resources/application.example.properties src/main/resources/application.properties
+        mv src/main/resources/application.example.properties src/main/resources/application2.properties
