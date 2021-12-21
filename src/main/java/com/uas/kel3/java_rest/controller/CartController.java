@@ -68,5 +68,10 @@ public class CartController {
 	 public void delete(@PathVariable Integer id) {
 		 cartService.deleteCart(id);
 	 }
+	 
+	 @DeleteMapping("/deleteByUser/{id_user}")
+	 public void deleteAllCartByUserId(@PathVariable Integer id_user) {
+		 cartService.deleteAllCartByUserId(id_user);
+	 }
 
 }

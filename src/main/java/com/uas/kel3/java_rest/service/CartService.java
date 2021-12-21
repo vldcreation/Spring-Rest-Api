@@ -22,6 +22,10 @@ public List<Cart> listAllCartById_user(Integer id_user){
 	return cartRepository.findAllById_user(id_user);
 }
 
+public void deleteAllCartByUserId(Integer id_user) {
+	cartRepository.deleteAllCartByUserId(id_user);
+}
+
  public Cart saveCart(Cart cart) {
 	 return cartRepository.save(cart);
  }
