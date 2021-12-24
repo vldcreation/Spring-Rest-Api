@@ -31,7 +31,7 @@ public class OrderController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Order>  getBooking(@PathVariable Integer id){
+	public ResponseEntity<Order> getOrder(@PathVariable Integer id){
 		try {
 			Order order= orderService.getOrder(id);
 			return new ResponseEntity<Order>(order,HttpStatus.OK);
@@ -41,8 +41,23 @@ public class OrderController {
 		}
 	}
 	
+	@GetMapping("/filter/{category}")
+	public List<Order> listgetByCategory(@PathVariable String category){
+		return orderService.findAllByCategory(category);
+	}
+	
+	@GetMapping("/filter/{category}/{id_user}")
+	public ResponseEntity<Order> getByCategoryandIdUser(@PathVariable String category,@PathVariable Integer id_user){
+		try {
+			Order order = orderService.findByCategoryandIdUser(category, id_user);
+			return new ResponseEntity<Order>(order, HttpStatus.OK);
+		} catch (NoSuchElementException e) {
+			return new ResponseEntity<Order>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
 	@PostMapping("")
-	public Order saveBooking(@RequestBody Order order){
+	public Order saveOrder(@RequestBody Order order){
 		Order newOrder = new Order(
 				order.getId(),
 				order.getCategory(),
@@ -56,7 +71,7 @@ public class OrderController {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Order> updateBooking(@RequestBody Order order, @PathVariable Integer id){
+	public ResponseEntity<Order> updateOrder(@RequestBody Order order, @PathVariable Integer id){
 		try {
 			order.setId(id);
 			return new ResponseEntity<Order>(order,HttpStatus.OK);
@@ -67,7 +82,7 @@ public class OrderController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Boolean> deleteBooking(@PathVariable Integer id){
+	public ResponseEntity<Boolean> deleteOrder(@PathVariable Integer id){
 		try {
 			orderService.deleteOrder(id);
 			return new ResponseEntity<Boolean>(HttpStatus.OK);
@@ -76,4 +91,9 @@ public class OrderController {
 			return new ResponseEntity<Boolean>(HttpStatus.NOT_FOUND);
 		}
 	}
+	
+	@DeleteMapping("/filter/{category}/{id_user}")
+	 public void deleteAllOrderByCategoryandIdUser(@PathVariable String category, Integer id_user) {
+		orderService.deleteAllOrderByCategoryandIdUser(category, id_user);
+	 }
 }

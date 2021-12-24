@@ -20,8 +20,16 @@ public class OrderService {
 		return orderRepository.findAll();
 	}
 	
+	public List<Order> findAllByCategory(String category){
+		return orderRepository.findAllByCategory(category);
+	}
+	
 	public Order getOrder(Integer id) {
 		return orderRepository.findById(id).get();
+	}
+	
+	public Order findByCategoryandIdUser(String category,Integer id_user) {
+		return orderRepository.findByCategoryandIdUser(category, id_user);
 	}
 	
 	public Order saveOrder(Order order) {
@@ -30,5 +38,9 @@ public class OrderService {
 	
 	public void deleteOrder(Integer id) {
 		orderRepository.deleteById(id);
+	}
+	
+	public void deleteAllOrderByCategoryandIdUser(String category,Integer id_user) {
+		orderRepository.deleteAllOrderByCategoryandIdUser(category, id_user);
 	}
 }
