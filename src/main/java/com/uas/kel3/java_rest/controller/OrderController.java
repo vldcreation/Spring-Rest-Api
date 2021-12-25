@@ -46,7 +46,7 @@ public class OrderController {
 		return orderService.findAllByCategory(category);
 	}
 	
-	@GetMapping("/filter/{category}/{id_user}")
+	@GetMapping("/filter2/{category}/{id_user}")
 	public ResponseEntity<Order> getByCategoryandIdUser(@PathVariable String category,@PathVariable Integer id_user){
 		try {
 			Order order = orderService.findByCategoryandIdUser(category, id_user);
