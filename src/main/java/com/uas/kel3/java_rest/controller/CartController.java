@@ -23,7 +23,7 @@ public class CartController {
 
 	@GetMapping("/user/{id}")
 	public List<Cart> getByUser(@PathVariable Integer id) {
-		return cartService.listAllCart();
+		return cartService.listAllCartById_user(id);
 	}
 	
 	 @GetMapping("/{id}")
